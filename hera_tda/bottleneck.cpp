@@ -21,6 +21,19 @@ std::vector<std::pair<T, T>> PersistencePairs_to_pairs(
     return pairs;
 }
 
+// assume first two columns are births and deaths
+template <typename T>
+std::vector<std::pair<T, T>> array_to_pairs(
+    const std::vector<std::vector<T>> &ps
+) {
+    std::vector<std::pair<T, T>> pairs;
+    pairs.reserve(ps.size());
+    for (auto& p : ps) {
+        pairs.emplace_back(std::make_pair(p[0], p[1]));
+    }
+    return pairs;
+}
+
 template <typename T>
 inline std::pair<int, int> matched_inds(
     hera::bt::MatchingEdge<T> e
@@ -29,7 +42,7 @@ inline std::pair<int, int> matched_inds(
 }
 
 template <typename T>
-auto BottleneckDistance(
+auto BottleneckDistanceBATS(
     const std::vector<bats::PersistencePair<T>> &ps1,
     const std::vector<bats::PersistencePair<T>> &ps2
 ) {
@@ -44,7 +57,22 @@ auto BottleneckDistance(
 }
 
 template <typename T>
-auto BottleneckDistanceApprox(
+auto BottleneckDistance(
+    const std::vector<std::vector<T>> &ps1,
+    const std::vector<std::vector<T>> &ps2
+) {
+    auto diagramA = array_to_pairs(ps1);
+    auto diagramB = array_to_pairs(ps2);
+    int decPrecision { 0 };
+    double res;
+    hera::bt::MatchingEdge<T> e;
+
+    res = hera::bottleneckDistExact(diagramA, diagramB, decPrecision, e, true);
+    return std::make_pair(res, matched_inds(e));
+}
+
+template <typename T>
+auto BottleneckDistanceApproxBATS(
     const std::vector<bats::PersistencePair<T>> &ps1,
     const std::vector<bats::PersistencePair<T>> &ps2,
     T delta
@@ -58,11 +86,28 @@ auto BottleneckDistanceApprox(
     return std::make_pair(res, matched_inds(e));
 }
 
+template <typename T>
+auto BottleneckDistanceApprox(
+    const std::vector<std::vector<T>> &ps1,
+    const std::vector<std::vector<T>> &ps2,
+    T delta
+) {
+    auto diagramA = array_to_pairs(ps1);
+    auto diagramB = array_to_pairs(ps2);
+    double res;
+    hera::bt::MatchingEdge<T> e;
+
+    res = hera::bottleneckDistApprox(diagramA, diagramB, delta, e, true);
+    return std::make_pair(res, matched_inds(e));
+}
+
 
 
 PYBIND11_MODULE(bottleneck, m) {
 
     m.def("Pairs", &PersistencePairs_to_pairs<double>);
+    m.def("BottleneckDistance", &BottleneckDistanceBATS<double>);
     m.def("BottleneckDistance", &BottleneckDistance<double>);
+    m.def("BottleneckDistanceApprox", &BottleneckDistanceApproxBATS<double>);
     m.def("BottleneckDistanceApprox", &BottleneckDistanceApprox<double>);
 }
