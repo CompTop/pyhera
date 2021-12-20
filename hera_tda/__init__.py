@@ -1,1 +1,1 @@
-from bottleneck import *
+from .bottleneck import *

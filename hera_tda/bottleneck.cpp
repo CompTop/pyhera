@@ -107,6 +107,12 @@ PYBIND11_MODULE(bottleneck, m) {
 
     m.def("Pairs", &PersistencePairs_to_pairs<double>);
     m.def("BottleneckDistance", &BottleneckDistanceBATS<double>);
+    // m.def("BottleneckDistance", [](
+    //     const std::vector<bats::PersistencePair<double>> &ps1,
+    //     const std::vector<bats::PersistencePair<double>> &ps2) {
+    //         return BottleneckDistanceBATS(ps1, ps2);
+    //     }
+    // );
     m.def("BottleneckDistance", &BottleneckDistance<double>);
     m.def("BottleneckDistanceApprox", &BottleneckDistanceApproxBATS<double>);
     m.def("BottleneckDistanceApprox", &BottleneckDistanceApprox<double>);
