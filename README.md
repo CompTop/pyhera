@@ -3,6 +3,8 @@
 
 This allows for fast and easy computation of bottleneck distance between persistence diagrams in Python.
 
+Note that Hera is also used in [Dionysus 2](https://mrzv.org/software/dionysus2/API.html#diagrams) for bottleneck distance computation.
+
 ## Installation
 
 
