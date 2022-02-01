@@ -42,3 +42,7 @@ d, inds = hera.bottleneck.BottleneckDistance(pX, pY)
 ## Additional Examples
 
 See [demo.ipynb](ipynb/demo.ipynb)
+
+## TODO
+
+Add bindings for Wasserstein distance
