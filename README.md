@@ -1,7 +1,7 @@
 # PyHera
 [BATS](https://bats-tda.readthedocs.io/en/latest/) compatible python bindings for [Hera](https://bitbucket.org/grey_narn/hera/src/master/)
 
-This allows for easy computation of bottleneck distance between persistence diagrams in Python.
+This allows for fast and easy computation of bottleneck distance between persistence diagrams in Python.
 
 ## Installation
 
