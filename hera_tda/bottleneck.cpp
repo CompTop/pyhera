@@ -1,6 +1,7 @@
 #include <vector>
 #include <utility> // pair
 #include "barcode.hpp" // BATS barcode
+#include "util.hpp" // common utilities
 #include "bottleneck.h" // Hera bottleneck
 
 #include <pybind11/pybind11.h>
@@ -9,30 +10,7 @@
 #include <pybind11/numpy.h>
 #include <pybind11/buffer_info.h>
 
-template <typename T>
-std::vector<std::pair<T, T>> PersistencePairs_to_pairs(
-    const std::vector<bats::PersistencePair<T>> &ps
-) {
-    std::vector<std::pair<T, T>> pairs;
-    pairs.reserve(ps.size());
-    for (auto& p : ps) {
-        pairs.emplace_back(std::make_pair(p.birth, p.death));
-    }
-    return pairs;
-}
 
-// assume first two columns are births and deaths
-template <typename T>
-std::vector<std::pair<T, T>> array_to_pairs(
-    const std::vector<std::vector<T>> &ps
-) {
-    std::vector<std::pair<T, T>> pairs;
-    pairs.reserve(ps.size());
-    for (auto& p : ps) {
-        pairs.emplace_back(std::make_pair(p[0], p[1]));
-    }
-    return pairs;
-}
 
 template <typename T>
 inline std::pair<int, int> matched_inds(
@@ -107,12 +85,6 @@ PYBIND11_MODULE(bottleneck, m) {
 
     m.def("Pairs", &PersistencePairs_to_pairs<double>);
     m.def("BottleneckDistance", &BottleneckDistanceBATS<double>);
-    // m.def("BottleneckDistance", [](
-    //     const std::vector<bats::PersistencePair<double>> &ps1,
-    //     const std::vector<bats::PersistencePair<double>> &ps2) {
-    //         return BottleneckDistanceBATS(ps1, ps2);
-    //     }
-    // );
     m.def("BottleneckDistance", &BottleneckDistance<double>);
     m.def("BottleneckDistanceApprox", &BottleneckDistanceApproxBATS<double>);
     m.def("BottleneckDistanceApprox", &BottleneckDistanceApprox<double>);

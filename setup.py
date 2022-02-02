@@ -15,7 +15,8 @@ this_dir = os.path.dirname(os.path.realpath(__file__))
 include_dirs = [
 this_dir + '/BATS/include/',
 this_dir + '/pybind11/include/',
-this_dir + '/hera/bottleneck/include/'
+this_dir + '/hera/bottleneck/include/',
+this_dir + '/hera/wasserstein/include/'
 ]
 
 print('default compiler:', distutils.ccompiler.get_default_compiler())
@@ -30,11 +31,11 @@ except KeyError:
 if clang or distutils.ccompiler.get_default_compiler() == 'clang':
     # We're using clang
     extra = {'cxx': ['-std=c++17']} # '-fopenmp'
-    extra_link = ['-lomp']
+    #extra_link = ['-lomp']
 else:
     # assume we're using gcc
-    extra = {'cxx': ['-std=c++17', '-fopenmp']} # '-fopenmp'
-    extra_link = ['-lgomp']
+    extra = {'cxx': ['-std=c++17', '-march=native']} # '-fopenmp'
+    #extra_link = ['-lgomp']
 
 
 ext_modules = [
@@ -43,7 +44,15 @@ ext_modules = [
         ['hera_tda/bottleneck.cpp'],
         include_dirs=include_dirs,
         extra_compile_args=extra['cxx'],
-        extra_link_args=extra_link,
+        # extra_link_args=extra_link,
+        language='c++'
+    ),
+    Extension(
+        'hera_tda.wasserstein',
+        ['hera_tda/wasserstein.cpp'],
+        include_dirs=include_dirs,
+        extra_compile_args=extra['cxx'],
+        # extra_link_args=extra_link,
         language='c++'
     ),
 ]
@@ -88,5 +97,5 @@ setup(
         'matplotlib',
       ],
     python_requires=">=3.7",
-    keywords='algebraic topology, topological data analysis, bottleneck distance',
+    keywords='algebraic topology, topological data analysis, bottleneck distance, wasserstein distance, persistence barcode, persistence diagram',
 )

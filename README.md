@@ -1,7 +1,7 @@
 # PyHera
-[BATS](https://bats-tda.readthedocs.io/en/latest/) compatible python bindings for [Hera](https://bitbucket.org/grey_narn/hera/src/master/)
+Python bindings for [Hera](https://bitbucket.org/grey_narn/hera/src/master/), a library for fast calculation of bottleneck distance and Wasserstein distance on persistence diagrams.
 
-This allows for fast and easy computation of bottleneck distance between persistence diagrams in Python.
+These bindings are compatible with [BATS](https://bats-tda.readthedocs.io/en/latest/).
 
 Note that Hera is also used in [Dionysus 2](https://mrzv.org/software/dionysus2/API.html#diagrams) for bottleneck distance computation.
 
@@ -25,6 +25,7 @@ python setup.py install
 
 ## Basic Example
 
+### Bottleneck Distance
 After installation, the package is available under the `hera_tda` namespace.
 
 ```python
@@ -41,10 +42,20 @@ d, inds = hera.bottleneck.BottleneckDistance(pX, pY)
 
 `inds` is a tuple containing the indices of `pX` and `pY` that were the maximum-weight matching (`-1` is used to indicate a diagonal point).
 
+### Wasserstein Distance
+
+```python
+from hera_tda.wasserstein import WassersteinDistance
+
+pX = [[1.0, 2.0], [2.0,3.0]]
+pY = [[1.1, 2.1], [2.1, 3.1]]
+p = 2.0 # wasserstein-p
+d = WassersteinDistance(pX, pY, p)
+# d = 0.1414...
+```
+
+`WassersteinDistance` just returns the distance.  There is no matching.
+
 ## Additional Examples
 
-See [demo.ipynb](ipynb/demo.ipynb)
-
-## TODO
-
-Add bindings for Wasserstein distance
+See [demo.ipynb](ipynb/demo.ipynb) and [wasserstein.ipynb](ipynb/wasserstein.ipynb)
