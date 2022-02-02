@@ -1,0 +1,7 @@
+recursive-include pybind11/include *.h
+recursive-include BATS/include *.hpp
+recursive-include hera/bottleneck/include *.hpp *.h
+recursive-include hera/wasserstein/include *.hpp *.h
+recursive-exclude BATS *.cpp
+recursive-exclude hera *.cpp
+recursive-include hera_tda *.hpp *.cpp *.py
