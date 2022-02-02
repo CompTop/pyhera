@@ -1,7 +1,7 @@
-# PyHera
+# Hera-TDA
 Python bindings for [Hera](https://bitbucket.org/grey_narn/hera/src/master/), a library for fast calculation of bottleneck distance and Wasserstein distance on persistence diagrams.
 
-These bindings are compatible with [BATS](https://bats-tda.readthedocs.io/en/latest/).
+These bindings can be used with standard Python types (lists of lists).  These bindings are also compatible with [BATS](https://bats-tda.readthedocs.io/en/latest/).
 
 Note that Hera is also used in [Dionysus 2](https://mrzv.org/software/dionysus2/API.html#diagrams) for bottleneck distance computation.
 
