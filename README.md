@@ -13,6 +13,15 @@ You first need to install boost headers for Hera
 dnf install boost-devel # fedora
 ```
 
+### pip install
+
+```
+pip install hera-tda
+```
+This will compile binaries.
+
+### Build from source
+
 Then, do a recursive clone for submodules
 ```
 git clone --recursive git@github.com:CompTop/pyhera.git
