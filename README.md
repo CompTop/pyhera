@@ -2,6 +2,7 @@
 
 [![Supported Python Versions](https://img.shields.io/pypi/pyversions/hera-tda.svg)](https://pypi.org/project/hera-tda/)
 [![PyPi](https://img.shields.io/pypi/v/hera-tda.svg)](https://pypi.org/project/hera-tda/)
+[![License: BSD](https://img.shields.io/badge/License-BSD_3--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 [![Ubuntu Tests](https://github.com/CompTop/pyhera/workflows/ubuntu-latest/badge.svg)](https://github.com/CompTop/pyhera/actions)
 [![MacOS Tests](https://github.com/CompTop/pyhera/workflows/macos-latest/badge.svg)](https://github.com/CompTop/pyhera/actions)
