@@ -1,4 +1,11 @@
 # Hera-TDA
+
+[![Supported Python Versions](https://img.shields.io/pypi/pyversions/hera-tda.svg)](https://pypi.org/project/hera-tda/)
+[![PyPi](https://img.shields.io/pypi/v/hera-tda.svg)](https://pypi.org/project/hera-tda/)
+
+[![Ubuntu Tests](https://github.com/CompTop/pyhera/workflows/ubuntu-latest/badge.svg)](https://github.com/CompTop/pyhera/actions)
+[![MacOS Tests](https://github.com/CompTop/pyhera/workflows/macos-latest/badge.svg)](https://github.com/CompTop/pyhera/actions)
+
 Python bindings for [Hera](https://bitbucket.org/grey_narn/hera/src/master/), a library for fast calculation of bottleneck distance and Wasserstein distance on persistence diagrams.
 
 These bindings can be used with standard Python types (lists of lists).  These bindings are also compatible with [BATS](https://bats-tda.readthedocs.io/en/latest/).

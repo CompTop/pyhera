@@ -21,22 +21,6 @@ this_dir + '/hera/wasserstein/include/'
 
 print('default compiler:', distutils.ccompiler.get_default_compiler())
 
-# clang = False
-# try:
-#     if os.environ['CC'] == "clang":
-#         clang = True
-# except KeyError:
-#     clang = False
-
-# if clang or distutils.ccompiler.get_default_compiler() == 'clang':
-#     # We're using clang
-#     extra = {'cxx': ['-std=c++17']} # '-fopenmp'
-#     #extra_link = ['-lomp']
-# else:
-#     # assume we're using gcc
-#     extra = {'cxx': ['-std=c++17', '-march=native']} # '-fopenmp'
-#     #extra_link = ['-lgomp']
-
 extra = {'cxx': ['-std=c++17']}
 
 ext_modules = [
