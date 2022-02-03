@@ -16,6 +16,9 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: ${{ matrix.python-version }}
+      - name: Install boost headers
+        run: |
+          brew install boost
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
