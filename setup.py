@@ -53,6 +53,7 @@ setup(
     packages=['hera_tda'],
     ext_modules=ext_modules,
     zip_safe=False,
+    license_files = ('LICENSE','hera/license.txt'),
     description="Python bindings for Hera",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -73,7 +74,7 @@ setup(
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
-        'License :: OSI Approved :: MIT License',
+        'License :: OSI Approved :: BSD License',
         'Operating System :: POSIX :: Linux',
         'Operating System :: MacOS :: MacOS X'
     ],
