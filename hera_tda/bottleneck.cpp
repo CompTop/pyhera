@@ -20,7 +20,7 @@ inline std::pair<int, int> matched_inds(
 }
 
 template <typename T>
-auto BottleneckDistanceBATS(
+auto BottleneckDistance(
     const std::vector<bats::PersistencePair<T>> &ps1,
     const std::vector<bats::PersistencePair<T>> &ps2
 ) {
@@ -50,7 +50,7 @@ auto BottleneckDistance(
 }
 
 template <typename T>
-auto BottleneckDistanceApproxBATS(
+auto BottleneckDistanceApprox(
     const std::vector<bats::PersistencePair<T>> &ps1,
     const std::vector<bats::PersistencePair<T>> &ps2,
     T delta
@@ -84,17 +84,11 @@ auto BottleneckDistanceApprox(
 PYBIND11_MODULE(bottleneck, m) {
 
     m.def("Pairs", &PersistencePairs_to_pairs<double>);
-    // m.def("BottleneckDistance", &BottleneckDistanceBATS<double>);
-    // m.def("BottleneckDistance", &BottleneckDistance<double>);
-    // m.def("BottleneckDistanceApprox", &BottleneckDistanceApproxBATS<double>);
-    // m.def("BottleneckDistanceApprox", &BottleneckDistanceApprox<double>);
-	
-	// m.def("BottleneckDistance", &BottleneckDistanceBATS<double>);
-	
+
 	m.def("BottleneckDistance", [](
 		const std::vector<bats::PersistencePair<double>> &ps1,
 		const std::vector<bats::PersistencePair<double>> &ps2) {
-			return BottleneckDistanceBATS(ps1, ps2);
+			return BottleneckDistance(ps1, ps2);
 		}
 
 	);
@@ -106,7 +100,7 @@ PYBIND11_MODULE(bottleneck, m) {
 		const std::vector<std::vector<double>> &ps2) {
 			return BottleneckDistance(ps1, ps2);
 		}
-	
+
 	);
 
 	// m.def("BottleneckDistanceApprox", &BottleneckDistanceApproxBATS<double>);
@@ -115,7 +109,7 @@ PYBIND11_MODULE(bottleneck, m) {
 		const std::vector<bats::PersistencePair<double>> &ps1,
 		const std::vector<bats::PersistencePair<double>> &ps2,
 		double delta) {
-			return BottleneckDistanceApproxBATS(ps1, ps2, delta);
+			return BottleneckDistanceApprox(ps1, ps2, delta);
 		}
 
 	);
